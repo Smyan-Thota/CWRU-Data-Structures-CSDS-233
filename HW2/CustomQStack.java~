@@ -1,0 +1,53 @@
+package HW2;
+
+import java.util.*;
+public class CustomQStack {
+
+ Queue<Integer> Q = new LinkedList<Integer>();
+ 
+ public CustomQStack(Queue<Integer> Qinput) {
+  Q=Qinput;
+ }
+ 
+ public boolean empty() {
+  return Q.isEmpty();
+ }
+ 
+ public int pop() {
+  if(Q.isEmpty()==true) {
+   System.out.println("Empty");
+   return -1;
+  }
+  int i = Q.remove();
+  return i;
+ }
+ 
+ public void push(int input) {
+  int size = Q.size();
+  Q.add(input);
+  for(int i=0;i<size; i++) {
+   int j = Q.remove();
+   Q.add(j);
+  }
+ }
+ 
+ public void printer() {
+  for(int i : Q) {
+   System.out.println(i+" ");
+  }
+ }
+ 
+ public static void main (String[] args) {
+  Queue<Integer> Q = new LinkedList<Integer>();
+  Q.add(1);
+  Q.add(2);
+  Q.add(3);
+  Q.add(4);
+  
+  CustomQStack S = new CustomQStack(Q);
+  System.out.println(S.pop());
+  System.out.println(S.pop());
+  S.push(9);
+  
+ }
+}

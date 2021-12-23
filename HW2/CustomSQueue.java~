@@ -1,0 +1,63 @@
+package HW2;
+
+import java.util.*;
+public class CustomSQueue {
+
+ Stack<Integer> a = new Stack<Integer>();
+ Stack<Integer> b = new Stack<Integer>();
+ 
+ public CustomSQueue(Stack<Integer> ainput) {
+  a = ainput;
+ }
+ 
+ public void add(int input) {
+  while(a.isEmpty()==false) {
+   b.push(a.pop());
+  }
+  
+  a.push(input);
+  
+  while(b.isEmpty()==false) {
+   a.push(b.pop());
+  }
+  
+  
+ }
+ 
+ public int poll() {
+  if(a.isEmpty()==true)
+   System.out.println("Queue empty");
+  
+  int i = a.peek();
+  a.pop();
+  return i;
+ }
+ 
+ public void printer() {
+  if(a.isEmpty())
+   return;
+  int i = a.peek();
+  a.pop();
+  printer();
+  System.out.println(i + " ");
+  a.push(i);
+  
+ }
+ 
+ public static void main(String[] args) {
+  
+  Stack<Integer> test = new Stack<Integer>();
+  test.push(1);
+  test.push(2);
+  test.push(3);
+  test.push(4);
+  
+  CustomSQueue d = new CustomSQueue(test);
+  System.out.println(d.poll());
+  System.out.println(d.poll());
+  d.add(2);
+  d.printer();
+  
+  
+ }
+}
